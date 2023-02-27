@@ -3,8 +3,8 @@ package ua.com.alevel;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-
 public class SumCharacters {
+
     static final int MAX_CHAR = 256;
 
     static void countOfCharacters(BufferedReader reader) throws IOException {
