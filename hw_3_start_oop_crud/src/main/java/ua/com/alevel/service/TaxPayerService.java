@@ -15,14 +15,19 @@ public class TaxPayerService {
     public void create(TaxPayer taxPayer) {
         taxPayer.setId(generateId());
         increaseSize();
+        double tax = taxPayer.getTax();
         for (int i = 0; i < taxPayers.length; i++) {
-            if (taxPayers[i] == null) {
+            if (tax < 0){
+                taxPayers[i] = null;
+            }
+            else if (taxPayers[i] == null) {
                 taxPayers[i] = taxPayer;
                 break;
             }
+        }
             payerCount++;
         }
-    }
+
 
     public void update(TaxPayer taxPayer) {
         for (int i = 0; i < taxPayers.length; i++) {
