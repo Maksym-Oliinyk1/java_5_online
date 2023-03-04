@@ -50,9 +50,9 @@ public class TaxPayerService {
     }
 
     public TaxPayer findById(String id) {
-        for (TaxPayer student : taxPayers) {
-            if (student.getId().equals(id)) {
-                return student;
+        for (TaxPayer taxPayer : taxPayers) {
+            if (taxPayer.getId().equals(id)) {
+                return taxPayer;
             }
         }
         return null;

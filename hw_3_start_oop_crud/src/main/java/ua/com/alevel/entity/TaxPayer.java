@@ -11,8 +11,8 @@ public class TaxPayer extends BaseEntity {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void setTax(double amountOfTax){
-        this.tax = amountOfTax;
+    public void setTax(double tax){
+        this.tax = tax;
     }
     public String getName(String firstName, String lastName) {
         return this.firstName + " " + this.lastName;
