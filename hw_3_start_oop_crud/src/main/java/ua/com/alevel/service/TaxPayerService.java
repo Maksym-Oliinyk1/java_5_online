@@ -36,14 +36,15 @@ public class TaxPayerService {
         }
     }
 
-    public TaxPayer delete(String id) {
-        for (int i = 0; i < taxPayers.length; i++){
+    public TaxPayer delete(String id){
+        for (int i = 0; i < taxPayers.length; i++) {
             try {
-                if (taxPayers[i].equals(taxPayers[Integer.parseInt(id)])){
+                if(taxPayers[i].getId().equals(id)){
                     taxPayers[i] = null;
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+            }
+            catch (Exception exception){
+                i++;
             }
         }
         return null;
