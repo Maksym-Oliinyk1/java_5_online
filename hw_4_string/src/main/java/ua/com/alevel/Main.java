@@ -1,7 +1,5 @@
 package ua.com.alevel;
 
-import ua.com.alevel.Controller;
-
 import java.io.IOException;
 
 public class Main {
