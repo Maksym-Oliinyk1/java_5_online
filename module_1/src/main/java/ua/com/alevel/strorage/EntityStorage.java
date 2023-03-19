@@ -7,7 +7,7 @@ import ua.com.alevel.entity.BookAuthor;
 import java.util.ArrayList;
 
 public class EntityStorage {
-    private ArrayList<Author> authors = new ArrayList<>();
+    private ArrayList<Author> authors = new ArrayList<Author>();
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<BookAuthor> bookAuthors = new ArrayList<>();
 
@@ -72,12 +72,75 @@ public class EntityStorage {
         return books;
     }
 
+    public void updateAuthor(Author author) {
+        for (int i = 0; i < authors.size(); i++) {
+            try {
+                if (authors.get(i).getId() == author.getId()){
+                    authors.add(i, author);
+                }
+            } catch (Exception e) {
+                i++;
+            }
+        }
+    }
+
+    public void updateBook(Book book) {
+        for (int i = 0; i < books.size(); i++) {
+            try {
+                if (books.get(i).getId() == book.getId()){
+                    books.add(i, book);
+                }
+            } catch (Exception e) {
+                i++;
+            }
+        }
+    }
+
+    public Author deleteAuthor(int authorId) {
+        for (int i = 0; i < authors.size(); i++) {
+            try {
+                if (authors.get(i).getId() == authorId) {
+                    authors.remove(i);
+                }
+            }
+            catch (Exception exception){
+                i++;
+            }
+        }
+
+        for (int i = 0; i < bookAuthors.size(); i++) {
+            try {
+                if (bookAuthors.get(i).getAuthorId() == authorId) {
+                    bookAuthors.remove(i);
+                }
+            }
+            catch (Exception exception){
+                i++;
+            }
+        }
+        return null;
+    }
+
+    public Book deleteBook(int bookId) {
+        for (int i = 0; i < books.size(); i++) {
+            try {
+                if (books.get(i).getId() == bookId) {
+                    books.remove(i);
+                }
+            } catch (Exception exception) {
+                i++;
+            }
+        }
+        return null;
+    }
     public ArrayList<Book> findAllBooks() {
-        return this.books;
+        System.out.println(books);
+        return books;
     }
 
     public ArrayList<Author> findAllAuthors() {
-        return this.authors;
+        System.out.println(authors);
+        return authors;
     }
 
     private int generateIdForAuthor() {

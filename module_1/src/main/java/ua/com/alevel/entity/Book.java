@@ -3,7 +3,7 @@ package ua.com.alevel.entity;
 public class Book extends BaseEntity {
     private String bookName;
     private String genre;
-    private String rate;
+    private double rate;
 
     public String getBookName() {
         return bookName;
@@ -21,11 +21,11 @@ public class Book extends BaseEntity {
         this.genre = genre;
     }
 
-    public String getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(String rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

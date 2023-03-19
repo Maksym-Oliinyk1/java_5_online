@@ -8,16 +8,16 @@ public class Author extends BaseEntity {
         return firstName;
     }
 
-    public void setFirstName() {
-        this.firstName = firstName;
+    public void setFirstName(String firstName) {
+        this.firstName = this.firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName() {
-        this.lastName = lastName;
+    public void setLastName(String lastName) {
+        this.lastName = this.lastName;
     }
 
     @Override
