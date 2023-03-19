@@ -7,25 +7,26 @@ import ua.com.alevel.entity.BookAuthor;
 import java.util.ArrayList;
 
 public class EntityStorage {
-    private ArrayList<Author> authors = new ArrayList<Author>();
+
+    private ArrayList<Author> authors = new ArrayList<>();
     private ArrayList<Book> books = new ArrayList<>();
     private ArrayList<BookAuthor> bookAuthors = new ArrayList<>();
 
-    public void addAuthor(Author author) {
+   public void addAuthor(Author author) {
         author.setId(generateIdForAuthor());
         for (int i = 0; i < authors.size(); i++) {
-            if (authors.get(i) == null) {
+            if (authors.get(i) == null){
                 authors.add(author);
                 break;
             }
         }
     }
-
     public void addBook(Book book) {
-        book.setId(generateIdForAuthor());
+        book.setId(generateIdForBook());
         for (int i = 0; i < books.size(); i++) {
             if (books.get(i) == null) {
-                books.add(book);
+                books.add(i, book);
+                break;
             }
         }
     }
@@ -134,13 +135,15 @@ public class EntityStorage {
         return null;
     }
     public ArrayList<Book> findAllBooks() {
-        System.out.println(books);
-        return books;
+        return this.books;
     }
 
     public ArrayList<Author> findAllAuthors() {
-        System.out.println(authors);
-        return authors;
+        return this.authors;
+    }
+
+    public ArrayList<BookAuthor> findAllBookAuthors() {
+        return this.bookAuthors;
     }
 
     private int generateIdForAuthor() {

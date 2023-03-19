@@ -2,11 +2,13 @@ package ua.com.alevel.controller;
 
 import ua.com.alevel.entity.Author;
 import ua.com.alevel.entity.Book;
+import ua.com.alevel.entity.BookAuthor;
 import ua.com.alevel.strorage.EntityStorage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class Controller {
     EntityStorage entityStorage = new EntityStorage();
@@ -33,10 +35,11 @@ public class Controller {
         System.out.println("If you want attach book to author enter 7");
         System.out.println("If you want find all authors 8");
         System.out.println("If you want find all books, please enter 9");
+        System.out.println("If you want find all authors and theirs books, enter 10");
         System.out.println("If you want close, please enter 0");
     }
 
-    private void crud(BufferedReader reader, String select) throws IOException {
+   private void crud(BufferedReader reader, String select) throws IOException {
         switch (select) {
             case "1" -> createAuthor(reader);
             case "2" -> createBook(reader);
@@ -45,8 +48,9 @@ public class Controller {
             case "5" -> deleteAuthor(reader);
             case "6" -> deleteBook(reader);
             case "7" -> attachBookToAuthor(reader);
-            case "8" -> entityStorage.findAllAuthors();
-            case "9" -> entityStorage.findAllBooks();
+            case "8" -> findAllAuthors();
+            case "9" -> findAllBooks();
+            case "10" -> findAllBookAuthors();
             case "0" -> System.exit(0);
         }
         menu();
@@ -65,14 +69,14 @@ public class Controller {
 
     private void createBook(BufferedReader reader) throws IOException {
         System.out.println("Enter name of a book");
-        String bookname = reader.readLine();
+        String bookName = reader.readLine();
         System.out.println("Enter genre of a book");
         String genre = reader.readLine();
         System.out.println("Enter rate of book (1 to 5, double)");
         String stringRate = reader.readLine();
         double rate = Double.parseDouble(String.valueOf(stringRate));
         Book book = new Book();
-        book.setBookName(bookname);
+        book.setBookName(bookName);
         book.setGenre(genre);
         book.setRate(rate);
         entityStorage.addBook(book);
@@ -96,14 +100,14 @@ public class Controller {
         String id = reader.readLine();
         System.out.println("Enter the new name");
         String name = reader.readLine();
-        System.out.println("Enter the new ganre");
-        String ganre = reader.readLine();
+        System.out.println("Enter the new genre");
+        String genre = reader.readLine();
         System.out.println("Enter the new rate");
         String stringRate = reader.readLine();
         double rate = Double.parseDouble(String.valueOf(stringRate));
         Book book = new Book();
         book.setBookName(name);
-        book.setGenre(ganre);
+        book.setGenre(genre);
         book.setRate(rate);
         entityStorage.updateBook(book);
     }
@@ -119,18 +123,46 @@ public class Controller {
         System.out.println("Successful");
     }
 
-    private void deleteAuthor(BufferedReader reader) throws IOException {
+    private void findAllAuthors() {
+        ArrayList<Author> authors = entityStorage.findAllAuthors();
+        for (Author author : authors) {
+            if (author != null){
+                System.out.println("Author = " + author);
+            }
+        }
+    }
+
+    private void findAllBooks() {
+        ArrayList<Book> books = entityStorage.findAllBooks();
+        for (Book book : books) {
+            if (book != null) {
+                System.out.println("Book = " + book);
+            }
+        }
+    }
+
+    private void findAllBookAuthors() {
+        ArrayList<BookAuthor> bookAuthors = entityStorage.findAllBookAuthors();
+        for (BookAuthor bookAuthor: bookAuthors) {
+            if (bookAuthor != null) {
+                System.out.println("Book = " + bookAuthor);
+            }
+        }
+    }
+
+  private void deleteAuthor(BufferedReader reader) throws IOException {
         System.out.println("Please enter id of the author, you want to delete");
         String stringId = reader.readLine();
         int id = Integer.parseInt(String.valueOf(stringId));
-        Author author = entityStorage.deleteAuthor(id);
+        entityStorage.deleteAuthor(id);
     }
 
     private void deleteBook(BufferedReader reader) throws IOException {
         System.out.println("Please enter id of the book, you want to delete");
         String stringId = reader.readLine();
         int id = Integer.parseInt(String.valueOf(stringId));
-        Book book = entityStorage.deleteBook(id);
+        entityStorage.deleteBook(id);
+
     }
 
 
