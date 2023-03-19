@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Controller {
+
     public void start() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome");
@@ -32,11 +33,13 @@ public class Controller {
             case "0" -> System.exit(0);
         }
     }
+
     private void ordinaryReverse(BufferedReader bf) throws IOException {
         System.out.println("Enter the string");
         String userString = bf.readLine();
         System.out.println(Service.reverse(userString));
     }
+
     private void substringReverse(BufferedReader bf) throws IOException {
         System.out.println("Enter the string");
         String userString = bf.readLine();
@@ -44,6 +47,7 @@ public class Controller {
         String dest = bf.readLine();
         System.out.println(Service.reverse(userString, dest));
     }
+
     private void superReverse(BufferedReader bf) throws IOException {
         System.out.println("Enter the string");
         String userString = bf.readLine();
