@@ -5,6 +5,7 @@ import ua.com.alevel.entity.Book;
 import ua.com.alevel.entity.BookAuthor;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class EntityStorage {
 
@@ -14,44 +15,30 @@ public class EntityStorage {
 
    public void addAuthor(Author author) {
         author.setId(generateIdForAuthor());
-        for (int i = 0; i < authors.size(); i++) {
-            if (authors.get(i) == null){
-                authors.add(author);
-                break;
-            }
+        authors.add(author);
         }
-    }
+
     public void addBook(Book book) {
         book.setId(generateIdForBook());
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i) == null) {
-                books.add(i, book);
-                break;
-            }
-        }
+        books.add(book);
     }
 
-    public void attachBookToAuthor(int bookId, int authorId) {
-        for (int i = 0; i < bookAuthors.size(); i++) {
-            if (bookAuthors.get(i) == null) {
+    public void attachBookToAuthor(String bookId, String authorId) {
                 BookAuthor bookAuthor = new BookAuthor();
                 bookAuthor.setAuthorId(authorId);
                 bookAuthor.setBookId(bookId);
-                bookAuthors.add(i, bookAuthor);
-                break;
+                bookAuthors.add(bookAuthor);
             }
-        }
-    }
 
-    public ArrayList<Book> findBookByAuthor(int authorId) {
-        ArrayList<Integer> bookIds = new ArrayList<>();
+    public ArrayList<Book> findBookByAuthor(String authorId) {
+        ArrayList<String> bookIds = new ArrayList<>();
         for (int i = 0; i < bookAuthors.size(); i++) {
             BookAuthor bookAuthor = new BookAuthor();
             bookAuthors.add(i, bookAuthor);
-            if (bookAuthor != null && bookAuthor.getAuthorId() == authorId) {
+            if (bookAuthor.getAuthorId() != null && bookAuthor.getAuthorId().equals(authorId)) {
                 for (int i1 = 0; i1 < bookIds.size(); i++) {
-                    if (bookIds.get(i) == 0) {
-                        bookIds.add(i1, bookAuthor.getBookId());
+                    if (bookIds.get(i1) == null) {
+                        bookIds.add(i1, BookAuthor.getBookId());
                         break;
                     }
                 }
@@ -60,7 +47,7 @@ public class EntityStorage {
         ArrayList<Book> books = new ArrayList<>();
         for (int i = 0; i < this.books.size(); i++) {
             for (int i1 = 0; i1 < bookIds.size(); i++) {
-                if (this.books.get(i1) != null && this.books.get(i1).getId() == bookIds.get(i1)) {
+                if (this.books.get(i1) != null && this.books.get(i1).getId().equals(bookIds.get(i1))) {
                     for (int i2 = 0; i2 < books.size(); i2++) {
                         if (books.get(i2) == null) {
                             books.add(i2, this.books.get(i2));
@@ -76,9 +63,11 @@ public class EntityStorage {
     public void updateAuthor(Author author) {
         for (int i = 0; i < authors.size(); i++) {
             try {
-                if (authors.get(i).getId() == author.getId()){
+                if (authors.get(i).getId().equals(author.getId())){
+                    authors.remove(i);
                     authors.add(i, author);
                 }
+                break;
             } catch (Exception e) {
                 i++;
             }
@@ -88,7 +77,8 @@ public class EntityStorage {
     public void updateBook(Book book) {
         for (int i = 0; i < books.size(); i++) {
             try {
-                if (books.get(i).getId() == book.getId()){
+                if (books.get(i).getId().equals(book.getId())){
+                    books.remove(i);
                     books.add(i, book);
                 }
             } catch (Exception e) {
@@ -97,10 +87,10 @@ public class EntityStorage {
         }
     }
 
-    public Author deleteAuthor(int authorId) {
+    public void deleteAuthor(String authorId) {
         for (int i = 0; i < authors.size(); i++) {
             try {
-                if (authors.get(i).getId() == authorId) {
+                if (authorId.equals(authors.get(i).getId())) {
                     authors.remove(i);
                 }
             }
@@ -111,7 +101,7 @@ public class EntityStorage {
 
         for (int i = 0; i < bookAuthors.size(); i++) {
             try {
-                if (bookAuthors.get(i).getAuthorId() == authorId) {
+                if (bookAuthors.get(i).getAuthorId().equals(authorId)) {
                     bookAuthors.remove(i);
                 }
             }
@@ -119,20 +109,18 @@ public class EntityStorage {
                 i++;
             }
         }
-        return null;
     }
 
-    public Book deleteBook(int bookId) {
+    public void deleteBook(String bookId) {
         for (int i = 0; i < books.size(); i++) {
             try {
-                if (books.get(i).getId() == bookId) {
+                if (books.get(i).getId().equals(bookId)) {
                     books.remove(i);
                 }
             } catch (Exception exception) {
                 i++;
             }
         }
-        return null;
     }
     public ArrayList<Book> findAllBooks() {
         return this.books;
@@ -146,21 +134,23 @@ public class EntityStorage {
         return this.bookAuthors;
     }
 
-    private int generateIdForAuthor() {
-        for (int i = 0; i < authors.size(); i++) {
-            if (authors.get(i) == null) {
-                return i + 1;
+    private String generateIdForAuthor() {
+        String id = UUID.randomUUID().toString();
+        for (Author author : authors) {
+                if (author != null && author.getId().equals(id)) {
+                return generateIdForAuthor();
             }
         }
-        return 0;
+        return id;
     }
 
-    private int generateIdForBook() {
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i) == null) {
-                return i + 1;
+    private String generateIdForBook() {
+        String id = UUID.randomUUID().toString();
+        for (Book book : books) {
+            if (book != null && book.getId().equals(id)) {
+                return generateIdForBook();
             }
         }
-        return 0;
+        return id;
     }
 }

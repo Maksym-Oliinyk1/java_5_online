@@ -2,22 +2,31 @@ package ua.com.alevel.entity;
 
 public class BookAuthor {
 
-    private int bookId;
-    private int authorId;
+    private static String bookId;
+    private String authorId;
 
-    public int getBookId() {
+    public static String getBookId() {
      return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(String bookId) {
         this.bookId = bookId;
     }
 
-    public int getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorIdId) {
-        this.authorId = authorIdId;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "ID of  the book ='" + getBookId() + '\'' +
+
+                "ID of the author ='" + getAuthorId() + '\'' +
+                "} " + super.toString();
     }
 }

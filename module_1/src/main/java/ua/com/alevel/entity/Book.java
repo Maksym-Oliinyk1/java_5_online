@@ -31,7 +31,7 @@ public class Book extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Bool{" +
+        return "Book{" +
                 "ID ='" + getId() + '\'' +
                 "Name ='" + bookName + '\'' +
                 ", Genre ='" + genre + '\'' +

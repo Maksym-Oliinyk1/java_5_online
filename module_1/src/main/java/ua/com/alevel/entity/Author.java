@@ -9,7 +9,7 @@ public class Author extends BaseEntity {
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = this.firstName;
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -17,7 +17,7 @@ public class Author extends BaseEntity {
     }
 
     public void setLastName(String lastName) {
-        this.lastName = this.lastName;
+        this.lastName = lastName;
     }
 
     @Override
