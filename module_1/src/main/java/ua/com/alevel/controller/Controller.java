@@ -8,7 +8,6 @@ import ua.com.alevel.strorage.EntityStorage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 public class Controller {
     EntityStorage entityStorage = new EntityStorage();
@@ -130,16 +129,16 @@ public class Controller {
     }
 
     private void findAllAuthors() {
-        ArrayList<Author> authors = entityStorage.findAllAuthors();
+        Author[] authors = entityStorage.findAllAuthors();
         for (Author author : authors) {
-            if (author != null){
+            if (author != null) {
                 System.out.println("Author = " + author);
             }
         }
     }
 
     private void findAllBooks() {
-        ArrayList<Book> books = entityStorage.findAllBooks();
+        Book[] books = entityStorage.findAllBooks();
         for (Book book : books) {
             if (book != null) {
                 System.out.println("Book = " + book);
@@ -148,10 +147,10 @@ public class Controller {
     }
 
     private void findAllBookAuthors() {
-        ArrayList<BookAuthor> bookAuthors = entityStorage.findAllBookAuthors();
-        for (BookAuthor bookAuthor: bookAuthors) {
+        BookAuthor[] booksAuthors = entityStorage.findAllBookAuthors();
+        for (BookAuthor bookAuthor : booksAuthors) {
             if (bookAuthor != null) {
-                System.out.println("Book = " + bookAuthor);
+                System.out.println("Author and book = " + bookAuthor);
             }
         }
     }
@@ -159,11 +158,10 @@ public class Controller {
     private void findBookByAuthor(BufferedReader reader) throws IOException {
         System.out.println("Please, enter the id of the author, which books you want to find");
         String id = reader.readLine();
-        ArrayList<Book> books = entityStorage.findBookByAuthor((id));
+        Book[] books = entityStorage.findBookByAuthor(id);
         for (Book book : books) {
             if (book != null) {
                 System.out.println("Book = " + book);
-                break;
             }
         }
     }
