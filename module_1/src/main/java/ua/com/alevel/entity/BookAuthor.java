@@ -23,9 +23,8 @@ public class BookAuthor {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Book and Author{" +
                 "ID of  the book ='" + getBookId() + '\'' +
-
                 "ID of the author ='" + getAuthorId() + '\'' +
                 "} " + super.toString();
     }
