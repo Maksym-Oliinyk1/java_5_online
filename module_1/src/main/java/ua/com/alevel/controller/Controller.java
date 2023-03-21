@@ -82,7 +82,6 @@ public class Controller {
         book.setGenre(genre);
         book.setRate(rate);
         entityStorage.addBook(book);
-        System.out.println("The book " + bookName + " created!");
     }
 
     private void updateAuthor(BufferedReader reader) throws IOException {

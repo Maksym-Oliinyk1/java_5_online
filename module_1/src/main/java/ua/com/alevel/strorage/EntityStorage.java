@@ -24,9 +24,16 @@ public class EntityStorage {
 
     public void addBook(Book book) {
         book.setId(generateIdForBook());
+        double rate = book.getRate();
         for (int i = 0; i < books.length; i++) {
-            if (books[i] == null) {
+            if (rate > 5 || rate < 0) {
+                books[i] = null;
+                System.out.println("The book was not created. Wrong rate!");
+                break;
+            }
+            else if (books[i] == null) {
                 books[i] = book;
+                System.out.println("The book " + book.getBookName() + " created!");
                 break;
             }
         }
