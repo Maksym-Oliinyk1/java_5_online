@@ -1,4 +1,4 @@
-package ua.com.alevel.strorage;
+package ua.com.alevel.service;
 
 import ua.com.alevel.entity.Author;
 import ua.com.alevel.entity.Book;
@@ -6,7 +6,7 @@ import ua.com.alevel.entity.BookAuthor;
 
 import java.util.UUID;
 
-public class EntityStorage {
+public class Service {
 
     private final Author[] authors = new Author[10];
     private final Book[] books = new Book[10];

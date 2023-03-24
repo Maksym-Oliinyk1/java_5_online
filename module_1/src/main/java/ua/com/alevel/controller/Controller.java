@@ -3,14 +3,14 @@ package ua.com.alevel.controller;
 import ua.com.alevel.entity.Author;
 import ua.com.alevel.entity.Book;
 import ua.com.alevel.entity.BookAuthor;
-import ua.com.alevel.strorage.EntityStorage;
+import ua.com.alevel.service.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Controller {
-    EntityStorage entityStorage = new EntityStorage();
+    Service service = new Service();
 
     public void start() throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
@@ -65,7 +65,7 @@ public class Controller {
         Author author = new Author();
         author.setFirstName(firstName);
         author.setLastName(lastName);
-        entityStorage.addAuthor(author);
+        service.addAuthor(author);
         System.out.println("The author " + firstName + " " + lastName + " added!");
     }
 
@@ -81,7 +81,7 @@ public class Controller {
         book.setBookName(bookName);
         book.setGenre(genre);
         book.setRate(rate);
-        entityStorage.addBook(book);
+        service.addBook(book);
     }
 
     private void updateAuthor(BufferedReader reader) throws IOException {
@@ -95,7 +95,7 @@ public class Controller {
         author.setFirstName(firstName);
         author.setLastName(lastName);
         author.setId(id);
-        entityStorage.updateAuthor(author);
+        service.updateAuthor(author);
         System.out.println("The author was successfully updated!");
     }
 
@@ -114,7 +114,7 @@ public class Controller {
         book.setGenre(genre);
         book.setRate(rate);
         book.setId(id);
-        entityStorage.updateBook(book);
+        service.updateBook(book);
         System.out.println("The book was successfully updated!");
     }
 
@@ -123,12 +123,12 @@ public class Controller {
         String bookId = reader.readLine();
         System.out.println("Please enter the author id");
         String authorId = reader.readLine();
-        entityStorage.attachBookToAuthor(bookId, authorId);
+        service.attachBookToAuthor(bookId, authorId);
         System.out.println("Successful");
     }
 
     private void findAllAuthors() {
-        Author[] authors = entityStorage.findAllAuthors();
+        Author[] authors = service.findAllAuthors();
         for (Author author : authors) {
             if (author != null) {
                 System.out.println("Author = " + author);
@@ -137,7 +137,7 @@ public class Controller {
     }
 
     private void findAllBooks() {
-        Book[] books = entityStorage.findAllBooks();
+        Book[] books = service.findAllBooks();
         for (Book book : books) {
             if (book != null) {
                 System.out.println("Book = " + book);
@@ -146,7 +146,7 @@ public class Controller {
     }
 
     private void findAllBookAuthors() {
-        BookAuthor[] booksAuthors = entityStorage.findAllBookAuthors();
+        BookAuthor[] booksAuthors = service.findAllBookAuthors();
         for (BookAuthor bookAuthor : booksAuthors) {
             if (bookAuthor != null) {
                 System.out.println("Author and book = " + bookAuthor);
@@ -157,7 +157,7 @@ public class Controller {
     private void findBookByAuthor(BufferedReader reader) throws IOException {
         System.out.println("Please, enter the id of the author, which books you want to find");
         String id = reader.readLine();
-        Book[] books = entityStorage.findBookByAuthor(id);
+        Book[] books = service.findBookByAuthor(id);
         for (Book book : books) {
             if (book != null) {
                 System.out.println("Book = " + book);
@@ -168,14 +168,14 @@ public class Controller {
   private void deleteAuthor(BufferedReader reader) throws IOException {
         System.out.println("Please enter id of the author, you want to delete");
         String Id = reader.readLine();
-        entityStorage.deleteAuthor(Id);
+        service.deleteAuthor(Id);
         System.out.println("The author was successfully deleted!");
     }
 
     private void deleteBook(BufferedReader reader) throws IOException {
         System.out.println("Please enter id of the book, you want to delete");
         String id = reader.readLine();
-        entityStorage.deleteBook(id);
+        service.deleteBook(id);
         System.out.println("The book was successfully deleted!");
 
     }
