@@ -24,19 +24,31 @@ public class Controller {
     }
 
     private static void menu() {
-        System.out.println();
+        System.out.println("---------------------------------------------------------------");
         System.out.println("If you want create author, please enter 1");
+        System.out.println();
         System.out.println("If you want create book, please enter 2");
+        System.out.println();
         System.out.println("If you want update author, please enter 3");
+        System.out.println();
         System.out.println("If you want update book, please enter 4");
+        System.out.println();
         System.out.println("If you want delete author, please enter 5");
+        System.out.println();
         System.out.println("If you want delete book, please enter 6");
+        System.out.println();
         System.out.println("If you want attach book to author enter 7");
+        System.out.println();
         System.out.println("If you want find all authors 8");
+        System.out.println();
         System.out.println("If you want find all books, please enter 9");
+        System.out.println();
         System.out.println("If you want find all authors and theirs books, enter 10");
+        System.out.println();
         System.out.println("If you want find all books by the author, please enter 11");
+        System.out.println();
         System.out.println("If you want close, please enter 0");
+        System.out.println("---------------------------------------------------------------");
     }
 
    private void crud(BufferedReader reader, String select) throws IOException {
