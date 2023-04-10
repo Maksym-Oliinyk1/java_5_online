@@ -36,6 +36,7 @@ public class Service {
             System.out.println("There no such directory");
         }
     }
+
     public void deleteFile(File file) {
         if (file.delete()) {
             System.out.println("File deleted");
@@ -55,7 +56,7 @@ public class Service {
                 }
             }
         }
-        System.out.println("Folder " + dir.getName() +  " was deleted!");
+        System.out.println("Folder " + dir.getName() + " was deleted!");
         dir.delete();
     }
 
@@ -70,20 +71,18 @@ public class Service {
         }
     }
 
-    public void findFile (File directory, String fileName) {
+    public void findFile(File directory, String fileName) {
         File[] files = directory.listFiles();
         if (files != null) {
             for (File file : files) {
                 if (file.getName().equals(fileName) && !file.isDirectory()) {
-                    System.out.println("File found " + fileName);
+                    System.out.println("File was found: " + fileName);
                 }
             }
         }
     }
 
-
-
-    public void findFolder (File directory, String fileName) {
+    public void findFolder(File directory, String fileName) {
         File[] directories = directory.listFiles();
         if (directories != null) {
             for (File directory1 : directories) {

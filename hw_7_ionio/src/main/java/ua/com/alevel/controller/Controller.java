@@ -11,7 +11,7 @@ public class Controller {
 
     Service service = new Service();
 
-    public void start(){
+    public void start() {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Welcome");
         System.out.println("Select options:");
@@ -54,7 +54,7 @@ public class Controller {
     }
 
     private void navigation(BufferedReader reader, String select) {
-        switch(select) {
+        switch (select) {
             case "1" -> getListOfFiles(reader);
             case "2" -> createFile(reader);
             case "3" -> createDir(reader);
