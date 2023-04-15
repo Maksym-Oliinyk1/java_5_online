@@ -6,7 +6,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import ua.com.alevel.entity.Author;
 import ua.com.alevel.utill.DbUtil;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +32,15 @@ public class AuthorDaoCsv implements AuthorDao {
     @Override
     public void update(Author author) {
         if (author != null) {
-        initAuthors();
-        for (int i = 0; i < authors.size(); i++) {
-            if (authors.get(i).getId().equals(author.getId())) {
-                authors.set(i, author);
+            initAuthors();
+            for (int i = 0; i < authors.size(); i++) {
+                if (authors.get(i).getId().equals(author.getId())) {
+                    authors.set(i, author);
+                }
             }
-        } writeAuthorsToCSV();
-        } System.out.println("Author updated!");
+            writeAuthorsToCSV();
+            System.out.println("author updated!");
+        }
     }
 
     @Override
