@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.*;
 
 public class Service {
-    static final int INFINITY = 200000000;
+    static final int INFINITY = 200000;
 
     static int algorithmOfDijkstra(int start, int end, List<List<Edge>> graph) {
         int[] dist = new int[graph.size()];
