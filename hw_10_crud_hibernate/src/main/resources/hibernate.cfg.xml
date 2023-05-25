@@ -18,6 +18,7 @@
 
         <mapping class="ua.com.alevel.entity.Book"/>
         <mapping class="ua.com.alevel.entity.Author"/>
-        <mapping class="ua.com.alevel.entity.BaseEntity"/>
+<!--        <mapping class="ua.com.alevel.entity.BaseEntity"/>-->
+<!--        BaseEntity - это же не ентити-->
     </session-factory>
 </hibernate-configuration>
