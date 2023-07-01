@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<h1>Send money</h1>
+<form th:action="@{'/accounts/confirmOperation/' + ${accFromId}}" class="center" >
+
+    <div>
+        <label for="number">Number of account</label>
+        <input type="number" placeholder="enter number of account" id="number"
+               th:field="*{operationDto.accountToNumber}">
+    </div>
+    <div>
+        <label for="sum">Sum</label>
+        <input type="number" placeholder="enter sum you want to send" id="sum"
+               th:field="*{operationDto.operationSum}"></div>
+    <div>
+        <label for="category">Destination of your operation</label>
+        <input type="text" placeholder="enter category" id="category"
+               th:field="*{operationDto.operationCategory}">
+    </div>
+    <div class="center">
+        <button type="submit">SUBMIT!</button>
+    </div>
+</form>
+</body>

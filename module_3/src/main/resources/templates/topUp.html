@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<h1 th:text="'Top up account ' + ${account.getNumber()}"></h1>
+
+<form th:action="@{'/accounts/topUpFinally/' + ${account.getId()}}">
+
+    <div><label for="sum">Balance</label>
+        <input type="text" placeholder="put some money to your account" id="sum"
+               th:field="*{sum.operationSum}">
+    </div>
+    <div>
+        <button type="submit">SUBMIT!</button>
+    </div>
+</form>
+</body>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User accounts</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            height: 50px;
+
+        }
+
+        th, td {
+            padding: 15px;
+        }
+
+        #createAcc, #users {
+            padding-right: 100px;
+        }
+    </style>
+</head>
+<body>
+<h1 th:text="${user.getFirstName()} + ' ' + ${user.getLastName()}"></h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Account number</th>
+        <th>Balance</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.getNumber()}"></td>
+        <td th:text="${account.getBalance()}"></td>
+        <td>
+            <a role="button"
+               th:href="@{'/accounts/send/' + ${account.getId()}}"
+            >
+                <button>send money</button>
+            </a>
+        </td>
+        <td>
+            <a role="button"
+               th:href="@{'/accounts/topUp/' + ${account.getId()}}"
+            >
+                <button>top up</button>
+            </a>
+        </td>
+        <td>
+            <a role="button"
+               th:href="@{'/accounts/exportOperations/' + ${account.getId()}}"
+            >
+                <button>export operations</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+<a th:href="@{'/accounts/createNewUserAccount/' + ${user.getId()}}" role="button" id="createAcc">
+    <button>Create new account</button>
+</a>
+<div>
+    <a th:href="@{'/users'}" role="button" id="users">
+        <button>Users</button>
+    </a>
+</div>
+</body>
